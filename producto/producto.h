@@ -1,4 +1,5 @@
 typedef struct {
+    int ID;
     char nombre[32];
     char descripcion[128];
     float precio;
@@ -78,3 +79,7 @@ int ordenarInsertion(int* pArray,int limite);
 int utn_altaPersona(Persona* pPersona,int reintentos,int lenString,int min,int max);*/
 int buscarIndiceVacio(Producto* pBuffer,int limite,int*indice);
 int menuProductos(int*opcion);
+int obtenerID();
+int busquedaPorID(Producto* pBuffer,int limite,int ID,int* indiceID);
+int modificarProductoPorIndice(Producto* pBuffer,int indice);
+int borrarPorID(Producto* pBuffer,int indice);

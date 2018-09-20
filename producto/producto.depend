@@ -15,3 +15,17 @@
 	<string.h>
 	<time.h>
 
+1537411438 source:/home/blackedhs/Programacion/estructutras/struct/producto/producto.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"producto.h"
+
+1537411503 /home/blackedhs/Programacion/estructutras/struct/producto/producto.h
+
+1537409529 source:/home/blackedhs/Programacion/estructutras/struct/producto/main.c
+	<stdio.h>
+	<stdlib.h>
+	"producto.h"
+
