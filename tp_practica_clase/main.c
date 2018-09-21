@@ -13,6 +13,7 @@ int main()
     int indiceVacio;
     int opcion;
     int ID;
+    char cuit[10];
     pan_inicializarArray(pantallas,CANTIDAD_PANTALLAS);
     con_inicializarArray(contrataciones,CANTIDAD_CONTRATACIONES);
     do{
@@ -40,14 +41,29 @@ int main()
                     con_borrarPorID(contrataciones,CANTIDAD_CONTRATACIONES,ID);
                 }
                 break;
+            case 4:
+                pan_imprimirListaPantalla(pantallas,CANTIDAD_PANTALLAS);
+                if(utn_getEntero(&ID,3,"Ingrese el ID de la pantalla: ","Error Ingrese un ID valido: ",0,999)==0&&
+                    pan_existeID(pantallas,CANTIDAD_PANTALLAS,ID)==0){
+                    con_contratarPublicidad(contrataciones,ID,CANTIDAD_CONTRATACIONES);
+                }
+                break;
+            case 5:
+                utn_getLetrasYNumeros(cuit,10,"\nIngrese su CUIT: ");
+                if(con_imprimirPorCuit(contrataciones,CANTIDAD_CONTRATACIONES,cuit)==0){
+                    utn_getEntero(&ID,0,"Ingrese el ID de pantalla a modificar","Error Ingrese un numero valido",0,999);
+                    if(con_modificarPorIdPantalla(contrataciones,CANTIDAD_CONTRATACIONES,ID)==-1){
+                        printf("El ID ingresado es invalido");
+                    }
+                }else{
+                    printf("\nEl CUIT ingresado es invalido");
+                }
+                break;
             case 9:
                 pan_imprimirListaPantalla(pantallas,CANTIDAD_PANTALLAS);
                 getchar();
                 getchar();
                 system("clear");
-                break;
-            case 5:
-
                 break;
         }
     }while(opcion!=11);
@@ -67,7 +83,7 @@ int menu(int*opcion){
         printf("9- Listar pantallas\n");
         printf("10-Informar\n");
         printf("11- Salir\n");
-        utn_getEntero(&aux,10,"Ingrese una opcion","Error Ingrese Una Opcion Valida",1,11);
+        utn_getEntero(&aux,10,"Ingrese una opcion: ","Error Ingrese Una Opcion Valida",1,11);
         *opcion=aux;
     return 0;
 }

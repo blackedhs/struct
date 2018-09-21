@@ -19,7 +19,7 @@ int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,in
         do
         {
             reintentos--;
-            printf("\n%s: ",msg);
+            printf("\n%s",msg);
             if(getInt(&buffer) == 0 && buffer >= min && buffer<=max){
                     *pEntero= buffer;
                     retorno = 0;
@@ -284,6 +284,16 @@ int ordenarInsertion(int* pArray,int limite){
         *(pArray+j+1)=temp;
     }
     return 0;
+}
+int utn_getLetrasYNumeros(char* pBuffer,int limite,char* msj){
+    int retorno=-1;
+    char aux[limite];
+    printf("%s",msj);
+    if (pBuffer!=NULL&&limite>0&&getString(aux,limite)==0){
+            retorno=0;
+            strncpy(pBuffer,aux,limite);
+}
+    return retorno;
 }
 /** printPersona(Persona *pBuffer){
     printf("\tNombre\taltura\tedad:\n\n");

@@ -44,9 +44,8 @@ int pan_obtenerID(){
     return ID++;
 }
 int pan_altaPantalla(Pantalla* pBuffer,int indice){
-    utn_getLetras(pBuffer[indice].nombre,15,3,"Ingrese el nombre: ","Error");
-    printf("\nIngrese la direccion: ");
-    getString(pBuffer[indice].direccion,20);
+    utn_getLetras(pBuffer[indice].nombre,15,3,"Ingrese el nombre de la pantalla: ","Error");
+    utn_getLetrasYNumeros(pBuffer[indice].direccion,20,"\nIngrese la direccion: ");
     utn_getLetras(pBuffer[indice].tipo,10,3,"Ingrese el tipo: ","Error");
     utn_getFloat(&pBuffer[indice].precio,3,"Ingrese el precio","Error intente nuevamente",0,50000);
     pBuffer[indice].isEmpty=0;
@@ -56,8 +55,7 @@ int pan_altaPantalla(Pantalla* pBuffer,int indice){
 
 int pan_modificarPantallaPorIndice(Pantalla* pBuffer,int indice){
     utn_getLetras(pBuffer[indice].nombre,15,3,"Ingrese el nombre: ","Error");
-    printf("\nIngrese la direccion: ");
-    getString(pBuffer[indice].direccion,20);
+    utn_getLetrasYNumeros(pBuffer[indice].direccion,20,"\nIngrese la direccion: ");
     utn_getLetras(pBuffer[indice].tipo,10,3,"Ingrese el tipo: ","Error");
     utn_getFloat(&pBuffer[indice].precio,3,"Ingrese el precio","Error intente nuevamente",0,50000);
     return 0;
@@ -77,4 +75,14 @@ int pan_busquedaPorID(Pantalla* pBuffer,int limite,int ID,int* indiceID){
 int pan_borrarPorIndice(Pantalla* pBuffer,int indice){
     pBuffer[indice].isEmpty=1;
     return 0;
+}
+int pan_existeID(Pantalla* pBuffer,int limite,int ID){
+    int i;
+    int retorno=-1;
+    for(i=0;i<limite;i++){
+        if(pBuffer[i].ID==ID&&pBuffer[i].isEmpty==0){
+            retorno=0;
+        }
+    }
+    return retorno;
 }

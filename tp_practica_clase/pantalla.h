@@ -22,3 +22,4 @@ int pan_modificarPantallaPorIndice(Pantalla* pBuffer,int indice);
 int pan_busquedaPorID(Pantalla* pBuffer,int limite,int ID,int* indiceID);
 int pan_borrarPorID(Pantalla* pBuffer,int indice);
 int pan_borrarPorIndice(Pantalla* pBuffer,int indice);
+int pan_existeID(Pantalla* pBuffer,int limite,int ID);

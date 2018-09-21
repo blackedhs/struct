@@ -15,5 +15,6 @@ typedef struct {
 int con_inicializarArray(Contratacion* pBuffer,int limite);
 int con_borrarPorID(Contratacion* pBuffer,int limite,int id);
 int con_obtenerID();
-int contratarPublicidad(Contratacion* pBuffer,int indice);
-int con_buscarIndiceVacio(Contratacion* pBuffer,int limite,int*indice);
+int con_contratarPublicidad(Contratacion* pBuffer,int indice,int limite);
+int con_imprimirPorCuit(Contratacion* pBuffer,int limite,char* cuit);
+int con_modificarPorIdPantalla(Contratacion* pBuffer,int limite,int idPantalla);

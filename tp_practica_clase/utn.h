@@ -68,3 +68,4 @@ int ordenarInsertion(int* pArray,int limite);
 /**int printPersona(Persona* pBuffer);
 int utn_altaPersona(Persona* pPersona,int reintentos,int lenString,int min,int max);*/
 int getString(char* pBuffer,int limite);
+int utn_getLetrasYNumeros(char* pBuffer,int limite,char* msj);
