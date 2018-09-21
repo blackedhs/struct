@@ -1,0 +1,56 @@
+# depslib dependency file v1.0
+1537488121 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/pantalla.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1537492483 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/main.c
+	<stdio.h>
+	<stdlib.h>
+	"pantalla.h"
+	"utn.h"
+	"contrataciones.h"
+
+1537491283 /home/alumno/Escritorio/fede/struct/tp_practica_clase/pantalla.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1537479200 source:/home/alumno/Escritorio/fede/struct/producto/producto.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"producto.h"
+
+1537479200 /home/alumno/Escritorio/fede/struct/producto/producto.h
+
+1537491139 /home/alumno/Escritorio/fede/struct/tp_practica_clase/utn.h
+
+1537484510 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1537491310 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/contrataciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"contrataciones.h"
+
+1537492483 /home/alumno/Escritorio/fede/struct/tp_practica_clase/contrataciones.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
