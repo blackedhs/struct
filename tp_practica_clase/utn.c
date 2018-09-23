@@ -10,6 +10,7 @@ static int isFloat(char* pBuffer);
 static int getInt(int*pBuffer);
 static int isInt(char *pBuffer);
 static int isLetras(char*pBuffer);
+static int isEmail(char* pBuffer);
 
 int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,int max){
     int retorno = -1;
@@ -19,13 +20,13 @@ int utn_getEntero(int* pEntero,int reintentos,char* msg,char*msgError,int min,in
         do
         {
             reintentos--;
-            printf("\n%s",msg);
+            printf("%s",msg);
             if(getInt(&buffer) == 0 && buffer >= min && buffer<=max){
                     *pEntero= buffer;
                     retorno = 0;
                     break;
             }else{
-                printf("\n%s",msgError);
+                printf("%s",msgError);
             }
         }while(reintentos >= 0);
     }
@@ -39,13 +40,13 @@ int utn_getFloat(float*pFloat,int reintentos,char* msg,char*msgError,float min,f
         do
         {
             reintentos--;
-            printf("\n%s: ",msg);
+            printf("%s: ",msg);
             if(getFloat(&buffer) == 0 && buffer >= min && buffer<=max){
                     *pFloat= buffer;
                     retorno = 0;
                     break;
             }else{
-                printf("\n%s",msgError);
+                printf("%s",msgError);
             }
         }while(reintentos >= 0);
     }
@@ -155,36 +156,6 @@ int utn_initArray(int * pArray,int limite,int valor){
     }
     return retorno;
 }
-int utn_verificarNumeroEntero(int *pEntero,char* texto,char* textoError){
-    int aux;
-    printf("%s",texto);
-    while(scanf("%d",&aux)==0){
-        __fpurge(stdin);
-        printf("%s",textoError);
-        }
-    *pEntero=aux;
-    return 0;
-}
-int utn_verificarNumeroFloat(float *pFloat,char* texto,char* textoError){
-    float aux;
-    printf("%s",texto);
-    while(scanf("%f",&aux)==0){
-        __fpurge(stdin);
-        printf("%s",textoError);
-        }
-    *pFloat=aux;
-    return 0;
-}
-int utn_verificarNumeroChar(char *pChar,char* texto,char* textoError){
-    char aux;
-    printf("%s",texto);
-    while(scanf("%c",&aux)==0){
-        __fpurge(stdin);
-        printf("%s",textoError);
-        }
-    *pChar=aux;
-    return 0;
-}
 int utn_cargaNumeroAleatoriosEnArrays(int* pArray,int len,int min, int max){
     int i;
     srand(time(NULL));
@@ -244,13 +215,13 @@ int utn_getLetras(char *pBuffer,int limite,int reintentos,char* msj,char*msjErro
     if(pBuffer!=NULL && limite >0 && reintentos >=0){
         do{
             reintentos--;
-            printf("\n%s",msj);
+            printf("%s",msj);
             if(getString(buffer,limite)==0 && isLetras(buffer)==0){
                 strncpy(pBuffer,buffer,limite);
                 retorno=0;
                 break;
             }else
-                printf("\n%s",msjError);
+                printf("%s",msjError);
         }while(reintentos>=0);
     }
     return retorno;
@@ -293,6 +264,58 @@ int utn_getLetrasYNumeros(char* pBuffer,int limite,char* msj){
             retorno=0;
             strncpy(pBuffer,aux,limite);
 }
+    return retorno;
+}
+static int isEmail(char* pBuffer){
+    int retorno=-1;
+    int i;
+    int flagArroba=0;
+    int flagPunto=0;
+    if(pBuffer!=NULL){
+        for(i=0;i<strlen(pBuffer);i++){
+            if(i==0&&(pBuffer[i]==64||pBuffer[i]==46)){
+                break;
+            }
+            if(pBuffer[i]!=45&&pBuffer[i]!=46&&pBuffer[i]!=95&&(pBuffer[i]<65&&pBuffer[i]>90)&&
+            (pBuffer[i]<48&&pBuffer[i]>57)&&pBuffer[i]<97&&pBuffer[i]>122){
+                break;
+            }
+            if(pBuffer[i]==64){
+                if(flagArroba==1){
+                    break;
+                }
+                flagArroba=1;
+            }
+            if(flagArroba==1){
+                if(pBuffer[i]==46){
+                    flagPunto=1;
+                }
+            }
+            if(pBuffer[i]==46&&(pBuffer[i+1]==64||pBuffer[i+1]==46||pBuffer[i-1]==64)){
+                break;
+            }
+        }
+        if(i==strlen(pBuffer)&&flagArroba==1&&flagPunto==1){
+            retorno=0;
+        }
+    }
+    return retorno;
+}
+int utn_getEmial(char *pBuffer,int limite,int reintentos,char* msj,char*msjError){
+    int retorno=-1;
+    char buffer[limite];
+    if(pBuffer!=NULL && limite >0 && reintentos >=0){
+        do{
+            reintentos--;
+            printf("%s",msj);
+            if(getString(buffer,limite)==0 && isEmail(buffer)==0){
+                strncpy(pBuffer,buffer,limite);
+                retorno=0;
+                break;
+            }else
+                printf("%s",msjError);
+        }while(reintentos>=0);
+    }
     return retorno;
 }
 /** printPersona(Persona *pBuffer){

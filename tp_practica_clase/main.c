@@ -23,19 +23,19 @@ int main()
                 if(pan_buscarIndiceVacio(pantallas,CANTIDAD_PANTALLAS,&indiceVacio)==0){
                     pan_altaPantalla(pantallas,indiceVacio);
                 }else {
-                    printf("No hay mas espacio");
+                    printf("\nNo hay mas espacio");
                 }
                 break;
             case 2:
-                if(utn_getEntero(&ID,3,"Ingrese el ID de la pantalla a modificar","Error Intente nuevamente",0,999)==0&&
+                if(utn_getEntero(&ID,3,"\nIngrese el ID de la pantalla a modificar","\nError Intente nuevamente",0,999)==0&&
                     pan_busquedaPorID(pantallas,CANTIDAD_PANTALLAS,ID,&indiceVacio)==0){
                         pan_modificarPantallaPorIndice(pantallas,indiceVacio);
                 }else{
-                    printf("El ID ingresado no es valido");
+                    printf("\nEl ID ingresado no es valido");
                 }
                 break;
             case 3:
-                if(utn_getEntero(&ID,3,"Ingrese el ID de la pantalla a modificar","Error Intente nuevamente",0,999)==0&&
+                if(utn_getEntero(&ID,3,"\nIngrese el ID de la pantalla a modificar","\nError Intente nuevamente",0,999)==0&&
                 pan_busquedaPorID(pantallas,CANTIDAD_PANTALLAS,ID,&indiceVacio)==0){
                     pan_borrarPorIndice(pantallas,indiceVacio);
                     con_borrarPorID(contrataciones,CANTIDAD_CONTRATACIONES,ID);
@@ -43,7 +43,7 @@ int main()
                 break;
             case 4:
                 pan_imprimirListaPantalla(pantallas,CANTIDAD_PANTALLAS);
-                if(utn_getEntero(&ID,3,"Ingrese el ID de la pantalla: ","Error Ingrese un ID valido: ",0,999)==0&&
+                if(utn_getEntero(&ID,3,"\nIngrese el ID de la pantalla: ","\nError Ingrese un ID valido: ",0,999)==0&&
                     pan_existeID(pantallas,CANTIDAD_PANTALLAS,ID)==0){
                     con_contratarPublicidad(contrataciones,ID,CANTIDAD_CONTRATACIONES);
                 }
@@ -51,17 +51,32 @@ int main()
             case 5:
                 utn_getLetrasYNumeros(cuit,10,"\nIngrese su CUIT: ");
                 if(con_imprimirPorCuit(contrataciones,CANTIDAD_CONTRATACIONES,cuit)==0){
-                    utn_getEntero(&ID,0,"Ingrese el ID de pantalla a modificar","Error Ingrese un numero valido",0,999);
+                    utn_getEntero(&ID,0,"\nIngrese el ID de pantalla a modificar","\nError Ingrese un ID valido",0,999);
                     if(con_modificarPorIdPantalla(contrataciones,CANTIDAD_CONTRATACIONES,ID)==-1){
-                        printf("El ID ingresado es invalido");
+                        printf("\nEl ID ingresado es invalido");
                     }
                 }else{
                     printf("\nEl CUIT ingresado es invalido");
                 }
                 break;
+            case 6:
+                utn_getLetrasYNumeros(cuit,10,"\nIngrese su CUIT: ");
+                if(con_imprimirPorCuit(contrataciones,CANTIDAD_CONTRATACIONES,cuit)==0){
+                    utn_getEntero(&ID,0,"\nIngrese el ID de pantalla a borrar","\nError Ingrese un ID valido",0,999);
+                    if(con_cancelarById(contrataciones,CANTIDAD_CONTRATACIONES,ID)==-1){
+                        printf("\nEl ID ingresado es invalido");
+                    }
+                }
+                break;
+            case 7:
+
+            case 8:
+                con_imprimirContrataciones(contrataciones,CANTIDAD_CONTRATACIONES);
+                getchar();
+                system("clear");
+                break;
             case 9:
                 pan_imprimirListaPantalla(pantallas,CANTIDAD_PANTALLAS);
-                getchar();
                 getchar();
                 system("clear");
                 break;
@@ -83,7 +98,7 @@ int menu(int*opcion){
         printf("9- Listar pantallas\n");
         printf("10-Informar\n");
         printf("11- Salir\n");
-        utn_getEntero(&aux,10,"Ingrese una opcion: ","Error Ingrese Una Opcion Valida",1,11);
+        utn_getEntero(&aux,10,"\nIngrese una opcion: ","\nError Ingrese Una Opcion Valida",1,11);
         *opcion=aux;
     return 0;
 }

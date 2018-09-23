@@ -4,6 +4,7 @@
 #include <time.h>
 #include "utn.h"
 #include "contrataciones.h"
+
 static int con_buscarIndiceVacio(Contratacion* pBuffer,int limite,int*indice);
 int con_inicializarArray(Contratacion* pBuffer,int limite){
     int i;
@@ -75,6 +76,63 @@ int con_modificarPorIdPantalla(Contratacion* pBuffer,int limite,int idPantalla){
             if(pBuffer[i].idPantalla==idPantalla&& pBuffer[i].isEmpty==0){
                 retorno=0;
                 utn_getEntero(&pBuffer[i].dias,3,"\nIngrese la cantidad de dias: ","\nError Ingrese una cantidad de dias validos",1,200);
+            }
+        }
+    }
+    return retorno;
+}
+int con_cancelarById(Contratacion* pBuffer,int limite,int idPantalla){
+    int i;
+    int retorno=-1;
+        if(pBuffer!=NULL&&limite>0){
+            for(i=0;i<limite;i++){
+                if(pBuffer[i].idPantalla==idPantalla&& pBuffer[i].isEmpty==0){
+                    retorno=0;
+                    pBuffer[i].isEmpty=1;
+                }
+            }
+        }
+    return retorno;
+}
+/**
+int con_listarImportePorContratacion(Contratacion* pBufferCon,Pantalla* pBufferPan,int limiteCon,int cuit,int limitePan){
+    int i,j;
+    int idPantalla;
+    int retorno=-1;
+    float aux;
+    float acumulador;
+    if(pBufferCon!=NULL&&pBufferPan!=NULL&&limiteCon>0){
+        for(i=0;i<limiteCon;i++){
+            if(pBufferCon[i].cuit==cuit&&pBufferCon[i].isEmpty==0){
+                for(j=0;j<limite;j++){
+                    if(pBufferPan[j].ID==pBufferCon[i].idPantalla){
+                        aux=pBufferPan[j].precio * pBufferCon[i].dias;
+                        printf("\nID: %d",pBufferCon[i].ID);
+                        printf("\tCuit: %d",pBufferCon[i].cuit);
+                        printf("\tID Pantalla: %s",pBufferCon[i].idPantalla);
+                        printf("\tVideo %s",pBufferCon[i].video);
+                        printf("\tPrecio/dia: %.2f",pBufferPan[j].precio);
+                        printf("\tTotal: %.2f",aux);
+                        retorno=0;
+                    }
+                }
+            }
+        }
+    }
+    return retorno;
+}
+*/
+int con_imprimirContrataciones(Contratacion* pBuffer,int limite){
+    int i;
+    int retorno=-1;
+    if(pBuffer!=NULL&&limite>0){
+        for(i=0;i<limite;i++){
+            if(pBuffer[i].isEmpty==0){
+                retorno=0;
+                printf("\nID: %d",pBuffer[i].ID);
+                printf("\tCuit: %s",pBuffer[i].cuit);
+                printf("\tID Pantalla: %d",pBuffer[i].idPantalla);
+                printf("\tVideo %s",pBuffer[i].video);
             }
         }
     }

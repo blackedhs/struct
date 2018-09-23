@@ -54,7 +54,7 @@
 	<time.h>
 	"utn.h"
 
-1537497767 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/contrataciones.c
+1537739967 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/contrataciones.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
@@ -62,16 +62,16 @@
 	"utn.h"
 	"contrataciones.h"
 
-1537496884 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/utn.h
+1537651774 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/utn.h
 
-1537501160 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/contrataciones.h
+1537740345 /home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/contrataciones.h
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>
 	<time.h>
 	"utn.h"
 
-1537501552 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/main.c
+1537740371 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/main.c
 	<stdio.h>
 	<stdlib.h>
 	"pantalla.h"
@@ -93,7 +93,7 @@
 	"utn.h"
 	"pantalla.h"
 
-1537498124 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/utn.c
+1537737559 source:/home/blackedhs/Programacion/estructutras/struct/tp_practica_clase/utn.c
 	<stdio_ext.h>
 	<stdlib.h>
 	<string.h>

@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include "utn.h"
+
 typedef struct {
     int ID;
     char video[15];
@@ -18,3 +19,5 @@ int con_obtenerID();
 int con_contratarPublicidad(Contratacion* pBuffer,int indice,int limite);
 int con_imprimirPorCuit(Contratacion* pBuffer,int limite,char* cuit);
 int con_modificarPorIdPantalla(Contratacion* pBuffer,int limite,int idPantalla);
+int con_cancelarById(Contratacion* pBuffer,int limite,int idPantalla);
+int con_imprimirContrataciones(Contratacion* pBuffer,int limite);
