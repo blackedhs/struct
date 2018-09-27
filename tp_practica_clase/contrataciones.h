@@ -28,4 +28,5 @@ int con_ordenarByCuit(Contratacion* pBuffer,int limite,int upOrDonw);
 int con_intercambiarPocionEstructura(Contratacion* pBuffer,int indiceDestino,int indiceOrigen);
 int con_agruparPosiciones(Contratacion* pBuffer,int limite);
 int con_ingresoForzado(Contratacion* pBuffer,int limite,char* video,char* cuit,int dias,int idPantalla);
+int con_listarClientesEImportes(Contratacion * pBufferCon,Pantalla* pbufferPan,int limiteCon,int limitePan);
 #endif

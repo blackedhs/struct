@@ -20,11 +20,13 @@ int main()
     pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"sam","las piedras 4430","ldas",654);
     pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"sung","las edras","led",400);
     pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"g","las pied","lfgdfs",800);
-    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"peliculas","F4152942",5,0);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"peliculas","F4152942",3,0);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"peliculas","F4152942",20,1);
     con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"revistas","B4152942",5,2);
-    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"espectro","C4152942",5,0);
-    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"horror","34152942",5,1);
-    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"XXX","54152942",5,2);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"espectro","34152942",6,0);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"horror","34152942",10,1);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"XXX","54152942",3,2);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"XXX","54152942",40,2);
     do{
         menu(&opcion);
         switch (opcion){
@@ -95,6 +97,8 @@ int main()
                 break;
             case 10:
                 con_ordenarByCuit(contrataciones,CANTIDAD_CONTRATACIONES,1);
+                con_listarClientesEImportes(contrataciones,pantallas,CANTIDAD_CONTRATACIONES,CANTIDAD_PANTALLAS);
+                 getchar();
 
         }
     }while(opcion!=11);

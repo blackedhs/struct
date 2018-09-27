@@ -129,9 +129,10 @@ int con_imprimirContrataciones(Contratacion* pBuffer,int limite){
             if(pBuffer[i].isEmpty==0){
                 retorno=0;
                 printf("\nID: %d",pBuffer[i].ID);
-                printf("\tCuit: %s",pBuffer[i].cuit);
                 printf("\tID Pantalla: %d",pBuffer[i].idPantalla);
+                printf("\tCuit: %s",pBuffer[i].cuit);
                 printf("\tVideo %s",pBuffer[i].video);
+                printf("\tDias: %d",pBuffer[i].dias);
             }
         }
     }
@@ -145,8 +146,6 @@ int con_ordenarByCuit(Contratacion* pBuffer,int limite,int upOrDonw){
     if(pBuffer!=NULL&&limite>0&&(upOrDonw==0||upOrDonw==1)){
         retorno=0;
         limiteOrdenado=con_agruparPosiciones(pBuffer,limite);
-        printf("%d\n",limiteOrdenado);
-        getchar();
         while(flag==1){
             flag=0;
             for(i=0;i<(limiteOrdenado-1);i++){
@@ -194,11 +193,7 @@ int con_agruparPosiciones(Contratacion* pBuffer,int limite){
             if(pBuffer[i].isEmpty==0){
                 con_intercambiarPocionEstructura(pBuffer,j,i);
                 j++;
-                printf("%d",j);
             }
-        }
-        for(i=j;i<limite;i++){
-            pBuffer[i].isEmpty=1;
         }
     }
     return j;
@@ -213,4 +208,75 @@ int con_ingresoForzado(Contratacion* pBuffer,int limite,char* video,char* cuit,i
     pBuffer[aux].isEmpty=0;
     pBuffer[aux].ID=con_obtenerID();
     return 0;
+}
+int con_listarClientesEImportes(Contratacion * pBufferCon,Pantalla* pbufferPan,int limiteCon,int limitePan){
+    int i,j;
+    int retorno=-1;
+    int auxCantidadContratada=0;
+    float contador=0;
+    float max;
+    float auxPrecio;
+    char auxcuit[10];
+    char clienteMax[10];
+    if(pBufferCon!=NULL && limiteCon>0&& pbufferPan!=NULL&& limitePan>0){
+        retorno=0;
+        for(i=0;i<limiteCon;i++){
+            if(pBufferCon[i].isEmpty==1){
+                break;
+            }
+            for(j=0;j<limitePan;j++){
+                if(pBufferCon[i].isEmpty==0 &&pBufferCon[i].idPantalla==pbufferPan[j].ID){
+                    auxPrecio=pBufferCon[i].dias*pbufferPan[j].precio;
+                    if(i==0){
+                        max=auxPrecio;
+                        strcpy(clienteMax,pBufferCon[i].cuit);
+                        contador=auxPrecio;
+                        strcpy(auxcuit,pBufferCon[i].cuit);
+                        auxCantidadContratada++;
+                        printf("\nID: %d",pBufferCon[i].ID);
+                        printf("\tCuit: %s",pBufferCon[i].cuit);
+                        printf("\tID Pantalla: %d",pBufferCon[i].idPantalla);
+                        printf("\tVideo %s",pBufferCon[i].video);
+                        printf("\tDias: %d",pBufferCon[i].dias);
+                        printf("\tPrecio/dia: %.2f",pbufferPan[j].precio);
+                        printf("\tTotal: %.2f",auxPrecio);
+                    }else if(strcmp(auxcuit,pBufferCon[i].cuit)==0){
+                        contador+=auxPrecio;
+                         if(contador>max){
+                            max=contador;
+                            strcpy(clienteMax,pBufferCon[i].cuit);
+                        }
+                        auxCantidadContratada++;
+                        printf("\nID: %d",pBufferCon[i].ID);
+                        printf("\tCuit: %s",pBufferCon[i].cuit);
+                        printf("\tID Pantalla: %d",pBufferCon[i].idPantalla);
+                        printf("\tVideo %s",pBufferCon[i].video);
+                        printf("\tDias: %d",pBufferCon[i].dias);
+                        printf("\tPrecio/dia: %.2f",pbufferPan[j].precio);
+                        printf("\tTotal: %.2f",auxPrecio);
+                    }else{
+                        printf("\nCantidad contrada: %d \t total: %.2f",auxCantidadContratada,contador);
+                        if(contador>max){
+                            max=contador;
+                            strcpy(clienteMax,pBufferCon[i].cuit);
+                        }
+                        auxCantidadContratada=1;
+                        strcpy(auxcuit,pBufferCon[i].cuit);
+                        printf("\nID: %d",pBufferCon[i].ID);
+                        printf("\tCuit: %s",pBufferCon[i].cuit);
+                        printf("\tID Pantalla: %d",pBufferCon[i].idPantalla);
+                        printf("\tVideo %s",pBufferCon[i].video);
+                        printf("\tDias: %d",pBufferCon[i].dias);
+                        printf("\tPrecio/dia: %.2f",pbufferPan[j].precio);
+                        printf("\tTotal: %.2f",auxPrecio);
+                        contador=+auxPrecio;
+                    }
+                    break;
+                }
+            }
+        }
+        printf("\nCantidad contrada: %d \t total: %.2f",auxCantidadContratada,contador);
+        printf("\nEl valor maximo a facturar es: %.2f con el cuit: %s",max,clienteMax);
+    }
+    return retorno;
 }
