@@ -35,6 +35,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="contrataciones.h" />
+		<Unit filename="listar.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

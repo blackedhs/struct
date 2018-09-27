@@ -16,6 +16,15 @@ int main()
     char cuit[10];
     pan_inicializarArray(pantallas,CANTIDAD_PANTALLAS);
     con_inicializarArray(contrataciones,CANTIDAD_CONTRATACIONES);
+    pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"samsung","las piedras","lcd",355);
+    pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"sam","las piedras 4430","ldas",654);
+    pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"sung","las edras","led",400);
+    pan_ingresoForzado(pantallas,CANTIDAD_PANTALLAS,"g","las pied","lfgdfs",800);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"peliculas","F4152942",5,0);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"revistas","B4152942",5,2);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"espectro","C4152942",5,0);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"horror","34152942",5,1);
+    con_ingresoForzado(contrataciones,CANTIDAD_CONTRATACIONES,"XXX","54152942",5,2);
     do{
         menu(&opcion);
         switch (opcion){
@@ -60,7 +69,7 @@ int main()
                 }
                 break;
             case 6:
-                utn_getLetrasYNumeros(cuit,10,"\nIngrese su CUIT: ");
+                utn_getLetrasYNumeros(cuit,10,"\nIngrese el CUIT: ");
                 if(con_imprimirPorCuit(contrataciones,CANTIDAD_CONTRATACIONES,cuit)==0){
                     utn_getEntero(&ID,0,"\nIngrese el ID de pantalla a borrar","\nError Ingrese un ID valido",0,999);
                     if(con_cancelarById(contrataciones,CANTIDAD_CONTRATACIONES,ID)==-1){
@@ -69,7 +78,11 @@ int main()
                 }
                 break;
             case 7:
-
+                if(utn_getLetrasYNumeros(cuit,10,"\nIngrese el CUIT: ")==0){
+                    con_listarImportePorContratacion(contrataciones,pantallas,CANTIDAD_CONTRATACIONES,cuit,CANTIDAD_PANTALLAS);
+                    getchar();
+                }
+                break;
             case 8:
                 con_imprimirContrataciones(contrataciones,CANTIDAD_CONTRATACIONES);
                 getchar();
@@ -80,6 +93,9 @@ int main()
                 getchar();
                 system("clear");
                 break;
+            case 10:
+                con_ordenarByCuit(contrataciones,CANTIDAD_CONTRATACIONES,1);
+
         }
     }while(opcion!=11);
     return 0;

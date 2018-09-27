@@ -94,23 +94,22 @@ int con_cancelarById(Contratacion* pBuffer,int limite,int idPantalla){
         }
     return retorno;
 }
-/**
-int con_listarImportePorContratacion(Contratacion* pBufferCon,Pantalla* pBufferPan,int limiteCon,int cuit,int limitePan){
+
+int con_listarImportePorContratacion(Contratacion* pBufferCon,Pantalla* pBufferPan,int limiteCon,char* cuit,int limitePan){
     int i,j;
-    int idPantalla;
     int retorno=-1;
     float aux;
-    float acumulador;
-    if(pBufferCon!=NULL&&pBufferPan!=NULL&&limiteCon>0){
+    if(pBufferCon!=NULL&&pBufferPan!=NULL&&limiteCon>0&&cuit!=NULL&&limitePan>0){
         for(i=0;i<limiteCon;i++){
-            if(pBufferCon[i].cuit==cuit&&pBufferCon[i].isEmpty==0){
-                for(j=0;j<limite;j++){
-                    if(pBufferPan[j].ID==pBufferCon[i].idPantalla){
+            if(strcmp(pBufferCon[i].cuit,cuit)==0&&pBufferCon[i].isEmpty==0){
+                for(j=0;j<limitePan;j++){
+                    if(pBufferPan[j].ID==pBufferCon[i].idPantalla&& pBufferPan[j].isEmpty==0){
                         aux=pBufferPan[j].precio * pBufferCon[i].dias;
                         printf("\nID: %d",pBufferCon[i].ID);
-                        printf("\tCuit: %d",pBufferCon[i].cuit);
-                        printf("\tID Pantalla: %s",pBufferCon[i].idPantalla);
+                        printf("\tCuit: %s",pBufferCon[i].cuit);
+                        printf("\tID Pantalla: %d",pBufferCon[i].idPantalla);
                         printf("\tVideo %s",pBufferCon[i].video);
+                        printf("\tDias: %d",pBufferCon[i].dias);
                         printf("\tPrecio/dia: %.2f",pBufferPan[j].precio);
                         printf("\tTotal: %.2f",aux);
                         retorno=0;
@@ -121,7 +120,7 @@ int con_listarImportePorContratacion(Contratacion* pBufferCon,Pantalla* pBufferP
     }
     return retorno;
 }
-*/
+
 int con_imprimirContrataciones(Contratacion* pBuffer,int limite){
     int i;
     int retorno=-1;
@@ -137,4 +136,81 @@ int con_imprimirContrataciones(Contratacion* pBuffer,int limite){
         }
     }
     return retorno;
+}
+int con_ordenarByCuit(Contratacion* pBuffer,int limite,int upOrDonw){
+    int i=0;
+    int retorno=-1;
+    int flag=1;
+    int limiteOrdenado;
+    if(pBuffer!=NULL&&limite>0&&(upOrDonw==0||upOrDonw==1)){
+        retorno=0;
+        limiteOrdenado=con_agruparPosiciones(pBuffer,limite);
+        printf("%d\n",limiteOrdenado);
+        getchar();
+        while(flag==1){
+            flag=0;
+            for(i=0;i<(limiteOrdenado-1);i++){
+                if((upOrDonw==0 && strcmp(pBuffer[i].cuit,pBuffer[i+1].cuit)<0)||
+                    (upOrDonw==1 && strcmp(pBuffer[i].cuit,pBuffer[i+1].cuit)>0)){
+                        flag=1;
+                        con_intercambiarPocionEstructura(pBuffer,i,i+1);
+                }
+            }
+        }
+    }
+    return retorno;
+}
+int con_intercambiarPocionEstructura(Contratacion* pBuffer,int indiceDestino,int indiceOrigen){
+    Contratacion aux[1];
+    if(pBuffer!=NULL && indiceDestino!=indiceOrigen){
+        strcpy(aux[0].cuit,pBuffer[indiceDestino].cuit);
+        strcpy(aux[0].video,pBuffer[indiceDestino].video);
+        aux[0].dias=pBuffer[indiceDestino].dias;
+        aux[0].ID=pBuffer[indiceDestino].ID;
+        aux[0].idPantalla=pBuffer[indiceDestino].idPantalla;
+        aux[0].isEmpty=pBuffer[indiceDestino].isEmpty;
+
+        strcpy(pBuffer[indiceDestino].cuit,pBuffer[indiceOrigen].cuit);
+        strcpy(pBuffer[indiceDestino].video,pBuffer[indiceOrigen].video);
+        pBuffer[indiceDestino].dias=pBuffer[indiceOrigen].dias;
+        pBuffer[indiceDestino].ID=pBuffer[indiceOrigen].ID;
+        pBuffer[indiceDestino].idPantalla=pBuffer[indiceOrigen].idPantalla;
+        pBuffer[indiceDestino].isEmpty=pBuffer[indiceOrigen].isEmpty;
+
+        strcpy(pBuffer[indiceOrigen].cuit,aux[0].cuit);
+        strcpy(pBuffer[indiceOrigen].video,aux[0].video);
+        pBuffer[indiceOrigen].dias=aux[0].dias;
+        pBuffer[indiceOrigen].ID=aux[0].ID;
+        pBuffer[indiceOrigen].idPantalla=aux[0].idPantalla;
+        pBuffer[indiceOrigen].isEmpty=aux[0].isEmpty;
+    }
+    return 0;
+}
+int con_agruparPosiciones(Contratacion* pBuffer,int limite){
+    int i;
+    int j=0;
+    if (pBuffer!=NULL && limite>0){
+        for(i=0;i<limite;i++){
+            if(pBuffer[i].isEmpty==0){
+                con_intercambiarPocionEstructura(pBuffer,j,i);
+                j++;
+                printf("%d",j);
+            }
+        }
+        for(i=j;i<limite;i++){
+            pBuffer[i].isEmpty=1;
+        }
+    }
+    return j;
+}
+int con_ingresoForzado(Contratacion* pBuffer,int limite,char* video,char* cuit,int dias,int idPantalla){
+    int aux;
+    con_buscarIndiceVacio(pBuffer,limite,&aux);
+    strcpy(pBuffer[aux].video,video);
+    strcpy(pBuffer[aux].cuit,cuit);
+    pBuffer[aux].dias=dias;
+    pBuffer[aux].idPantalla=idPantalla;
+    pBuffer[aux].isEmpty=0;
+    pBuffer[aux].ID=con_obtenerID();
+    return 0;
 }

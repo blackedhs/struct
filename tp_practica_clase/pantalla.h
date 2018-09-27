@@ -1,3 +1,5 @@
+#ifndef PANTALLA_H_INCLUDED
+#define PANTALLA_H_INCLUDED
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
@@ -23,3 +25,5 @@ int pan_busquedaPorID(Pantalla* pBuffer,int limite,int ID,int* indiceID);
 int pan_borrarPorID(Pantalla* pBuffer,int indice);
 int pan_borrarPorIndice(Pantalla* pBuffer,int indice);
 int pan_existeID(Pantalla* pBuffer,int limite,int ID);
+int pan_ingresoForzado(Pantalla* pBuffer,int limite,char* nombre,char*direccion,char* tipo,float precio);
+#endif

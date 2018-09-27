@@ -86,3 +86,14 @@ int pan_existeID(Pantalla* pBuffer,int limite,int ID){
     }
     return retorno;
 }
+int pan_ingresoForzado(Pantalla* pBuffer,int limite,char* nombre,char*direccion,char* tipo,float precio){
+    int aux;
+    pan_buscarIndiceVacio(pBuffer,limite,&aux);
+    strcpy(pBuffer[aux].nombre,nombre);
+    strcpy(pBuffer[aux].tipo,tipo);
+    strcpy(pBuffer[aux].direccion,direccion);
+    pBuffer[aux].ID=pan_obtenerID();
+    pBuffer[aux].isEmpty=0;
+    pBuffer[aux].precio=precio;
+    return 0;
+}
