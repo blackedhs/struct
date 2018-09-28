@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1538084076 source:/home/alumno/Escritorio/fede/struct/tp_practica_clase/contrataciones.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"contrataciones.h"
+
+1538084076 /home/alumno/Escritorio/fede/struct/tp_practica_clase/utn.h
+
+1538084076 /home/alumno/Escritorio/fede/struct/tp_practica_clase/contrataciones.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+	"pantalla.h"
+
+1538084076 /home/alumno/Escritorio/fede/struct/tp_practica_clase/pantalla.h
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538095905 source:/home/alumno/Escritorio/fede/struct/llamadas_Y_ambulancia/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"lib.h"
+	"utn.h"
+
+1538095907 /home/alumno/Escritorio/fede/struct/llamadas_Y_ambulancia/lib.h
+
+1538086359 source:/home/alumno/Escritorio/fede/struct/llamadas_Y_ambulancia/utn.c
+	<stdio_ext.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"utn.h"
+
+1538084076 /home/alumno/Escritorio/fede/struct/llamadas_Y_ambulancia/utn.h
+
+1538093521 source:/home/alumno/Escritorio/fede/struct/llamadas_Y_ambulancia/lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"utn.h"
+	"lib.h"
+
