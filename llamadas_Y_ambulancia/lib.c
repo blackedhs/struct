@@ -110,6 +110,7 @@ int lla_asignarAmbulancia(Llamada* pbuffer,int limite,int id){
             if(pbuffer[i].id==id){
                 utn_getEntero(&pbuffer[i].idAmbulancia,3,"\nIngrese el Id de la ambulancia: ","\nError..Ingrese un id valido",0,999);
                 utn_getEntero(&pbuffer[i].tiempoInsumido,3,"\nIngrese el tiempo Insumido(minutos) : ","\nEror..Ingrese un tiempo valido",0,99);
+                pbuffer[i].estado=CUMPLIDO;
                 retorno=0;
             }
         }
